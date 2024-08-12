@@ -2,9 +2,13 @@ import { Link } from 'react-router-dom'
 import Logo from '../../assets/image/logo.png'
 import { ContainerHero, HeroItens, RestaurantHero } from './styles'
 import FundoHero from '../../assets/image/HeroImage.png'
-import ImgFundo from '../../assets/image/Imagem_fundo.png'
+import { Restaurante } from '../../Page/Home'
 
-const HeroSections = () => (
+type Props = {
+  restaurante?: Restaurante
+}
+
+const HeroSections = ({ restaurante }: Props) => (
   <>
     <ContainerHero style={{ backgroundImage: `url(${FundoHero})` }}>
       <div className="container">
@@ -19,18 +23,23 @@ const HeroSections = () => (
         </HeroItens>
       </div>
     </ContainerHero>
-    <ContainerHero style={{ backgroundImage: `url(${ImgFundo})` }}>
-      <div className="container">
-        <RestaurantHero>
-          <li>
-            <h3>Italiana</h3>
-          </li>
-          <li>
-            <h2>La Dolce Vita Trattoria</h2>
-          </li>
-        </RestaurantHero>
-      </div>
-    </ContainerHero>
+    {restaurante && (
+      <>
+        <ContainerHero style={{ backgroundImage: `url(${restaurante.capa})` }}>
+          <RestaurantHero>
+            <div className="container">
+              <li>
+                <h3>{restaurante.tipo}</h3>
+              </li>
+              <li>
+                <h2>{restaurante.titulo}</h2>
+              </li>
+            </div>
+            <div className="overlay"></div>
+          </RestaurantHero>
+        </ContainerHero>
+      </>
+    )}
   </>
 )
 

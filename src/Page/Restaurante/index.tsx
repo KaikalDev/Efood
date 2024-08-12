@@ -1,58 +1,30 @@
+import { useParams } from 'react-router-dom'
 import HeroSections from '../../Containers/HeroSections'
 import Pratos from '../../Containers/Pratos'
-import pratostype from '../../Models/pratos'
-import ImagemPrato from '../../assets/image/image2.png'
+import { useEffect, useState } from 'react'
+import { Cardapio, Restaurante } from '../Home'
 
-const pratos: pratostype[] = [
-  {
-    id: 1,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  },
-  {
-    id: 2,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  },
-  {
-    id: 3,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  },
-  {
-    id: 4,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  },
-  {
-    id: 5,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  },
-  {
-    id: 6,
-    title: 'Pizza Marguerita',
-    descreption:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: ImagemPrato
-  }
-]
+const RestaurantSection = () => {
+  const { id } = useParams()
 
-const RestaurantSection = () => (
-  <>
-    <HeroSections />
-    <Pratos pratos={pratos} />
-  </>
-)
+  const [cardapio, setCardapio] = useState<Cardapio[]>([])
+  const [restaurant, setRestaurant] = useState<Restaurante>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setCardapio(res.cardapio)
+        setRestaurant(res)
+      })
+  }, [id])
+
+  return (
+    <>
+      <HeroSections restaurante={restaurant} />
+      <Pratos pratos={cardapio} />
+    </>
+  )
+}
 
 export default RestaurantSection

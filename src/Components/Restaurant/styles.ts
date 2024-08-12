@@ -4,17 +4,28 @@ import { Cores } from '../../styles'
 export const Card = styled.div`
   border: 1px solid ${Cores.Principal};
   position: relative;
+
+  > img {
+    width: 470px;
+    height: 220px;
+    object-fit: cover;
+  }
 `
 
-export const Categoria = styled.div`
+export const Tags = styled.div`
   position: absolute;
-  background-color: ${Cores.Principal};
-  padding: 4px 6px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #fff;
   top: 16px;
   right: 16px;
+  display: flex;
+  gap: 8px;
+
+  div {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background-color: ${Cores.Principal};
+    padding: 4px 6px;
+  }
 `
 
 export const ContainerCard = styled.div`
