@@ -1,6 +1,7 @@
 import Resturant from '../../Components/Restaurant'
-import { Restaurante } from '../../Page/Home'
 import { List } from './styles'
+
+import { Restaurante } from '../../Page/Home'
 
 type Props = {
   restaurantes: Restaurante[]

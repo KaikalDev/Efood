@@ -1,8 +1,8 @@
+import { ContainerFooter, SocialMidias, TextFooter } from './styles'
 import Logo from '../../assets/image/logo.png'
 import instagram from '../../assets/image/Instagram.png'
 import facebook from '../../assets/image/facebook.png'
 import twiter from '../../assets/image/twiter.png'
-import { ContainerFooter, SocialMidias, TextFooter } from './stylest'
 import ImageFundo from '../../assets/image/HeroImage.png'
 
 const Footer = () => (

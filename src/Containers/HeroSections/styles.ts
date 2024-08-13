@@ -10,9 +10,18 @@ export const HeroItens = styled.div`
   font-weight: bold;
   font-size: 18px;
 
-  a {
+  a,
+  button {
     color: ${Cores.Principal};
     text-decoration: none;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
   }
 `
 
