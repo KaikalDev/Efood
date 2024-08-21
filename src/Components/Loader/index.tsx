@@ -4,8 +4,12 @@ import { Colors } from '../../styles'
 
 import { Container } from './styles'
 
-const Loader = () => (
-  <Container>
+export type Props = {
+  type?: 'button' | 'section'
+}
+
+const Loader = ({ type = 'section' }: Props) => (
+  <Container type={type}>
     <PropagateLoader color={Colors.primary} />
   </Container>
 )

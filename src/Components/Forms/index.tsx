@@ -13,6 +13,7 @@ import { parseToBrl } from '../../Utils'
 import { Container } from './styled'
 import Button from '../Button'
 import Loader from '../Loader'
+import InputMask from 'react-input-mask'
 
 type Props = {
   totalPrice: number
@@ -93,8 +94,8 @@ const Forms = ({ totalPrice, show }: Props) => {
         formActive === 'card'
           ? schema
               .required('O campo é obrigatório')
-              .max(16, 'Formato inválido')
-              .min(16, 'Formato inválido')
+              .max(19, 'Formato inválido')
+              .min(19, 'Formato inválido')
           : schema
       ),
       cardCode: Yup.string().when((values, schema) =>
@@ -195,8 +196,8 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.addres}
               className={form.errors.addres ? 'error' : ''}
             />
+            <small>{form.errors.addres}</small>
           </div>
-          <small>{form.errors.addres}</small>
           <div>
             <label htmlFor="city">Cidade</label>
             <input
@@ -207,11 +208,13 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.city}
               className={form.errors.city ? 'error' : ''}
             />
+            <small>{form.errors.city}</small>
           </div>
           <div className="duo">
             <div>
               <label htmlFor="cep">CEP</label>
-              <input
+              <InputMask
+                mask="99999-999"
                 id="cep"
                 type="text"
                 name="cep"
@@ -219,6 +222,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cep}
                 className={form.errors.cep ? 'error' : ''}
               />
+              <small>{form.errors.city}</small>
             </div>
             <div>
               <label htmlFor="addresNumber">Número</label>
@@ -230,6 +234,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.addresNumber}
                 className={checkInputHasError('addresNumber') ? 'error' : ''}
               />
+              <small>{form.errors.addresNumber}</small>
             </div>
           </div>
           <div>
@@ -242,6 +247,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.complement}
               className={checkInputHasError('complement') ? 'error' : ''}
             />
+            <small>{form.errors.complement}</small>
           </div>
           <div className="marginTop">
             <Button
@@ -279,11 +285,13 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.carDisplayName}
               className={checkInputHasError('carDisplayName') ? 'error' : ''}
             />
+            <small>{form.errors.carDisplayName}</small>
           </div>
           <div className="duo">
             <div className="width">
               <label htmlFor="cardNumber">Número do cartão</label>
-              <input
+              <InputMask
+                mask="9999 9999 9999 9999"
                 id="cardNumber"
                 type="text"
                 name="cardNumber"
@@ -291,10 +299,12 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cardNumber}
                 className={checkInputHasError('cardNumber') ? 'error' : ''}
               />
+              <small>{form.errors.cardNumber}</small>
             </div>
             <div>
               <label htmlFor="cardCode">CVV</label>
-              <input
+              <InputMask
+                mask="999"
                 id="cardCode"
                 type="text"
                 name="cardCode"
@@ -302,12 +312,14 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cardCode}
                 className={checkInputHasError('cardCode') ? 'error' : ''}
               />
+              <small>{form.errors.cardCode}</small>
             </div>
           </div>
           <div className="duo">
             <div>
               <label htmlFor="expiresMonth">Mês de vencimento</label>
-              <input
+              <InputMask
+                mask="99"
                 id="expiresMonth"
                 type="text"
                 name="expiresMonth"
@@ -315,10 +327,12 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.expiresMonth}
                 className={checkInputHasError('expiresMonth') ? 'error' : ''}
               />
+              <small>{form.errors.expiresMonth}</small>
             </div>
             <div>
               <label htmlFor="expiresYear">Ano de vencimento</label>
-              <input
+              <InputMask
+                mask="99"
                 id="expiresYear"
                 type="text"
                 name="expiresYear"
@@ -326,6 +340,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.expiresYear}
                 className={checkInputHasError('expiresYear') ? 'error' : ''}
               />
+              <small>{form.errors.expiresYear}</small>
             </div>
           </div>
           <div className="marginTop">
@@ -336,7 +351,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               title="Clique aqui para finalizar a compra"
               disabled={isLoading}
             >
-              <>{isLoading ? <Loader /> : 'Finalizar compra'}</>
+              <>{isLoading ? <Loader type="button" /> : 'Finalizar compra'}</>
             </Button>
             <Button
               type="button"
