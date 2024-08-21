@@ -1,14 +1,8 @@
-import { Link } from 'react-router-dom'
+import { getDescription } from '../../Utils'
 
 import star from '../../assets/image/star.png'
-import {
-  Card,
-  ContainerCard,
-  DescriptionCard,
-  Nota,
-  Tags,
-  TitleCard
-} from './styles'
+import Button from '../Button'
+import * as S from './styles'
 
 type Props = {
   category: string
@@ -28,34 +22,31 @@ export const Resturant = ({
   title,
   destaque,
   id
-}: Props) => {
-  const getDescription = (descreption: string) => {
-    if (descreption.length > 250) {
-      return descreption.slice(0, 240) + ' ...'
-    }
-    return descreption
-  }
-
-  return (
-    <Card>
-      <img src={image} alt="foto do restaurante" />
-      <Tags>
-        {destaque && <div>Destaque da semana</div>}
-        <div>{category}</div>
-      </Tags>
-      <ContainerCard>
-        <TitleCard>
-          <li>{title}</li>
-          <Nota>
-            <h4>{nota}</h4>
-            <img src={star} alt="Star" />
-          </Nota>
-        </TitleCard>
-        <DescriptionCard>{getDescription(descreption)}</DescriptionCard>
-        <Link to={`/restaurante/${id}`}>Saiba mais</Link>
-      </ContainerCard>
-    </Card>
-  )
-}
+}: Props) => (
+  <S.Card>
+    <img src={image} alt="foto do restaurante" />
+    <S.Tags>
+      {destaque && <div>Destaque da semana</div>}
+      <div>{category}</div>
+    </S.Tags>
+    <S.ContainerCard>
+      <S.TitleCard>
+        <li>{title}</li>
+        <S.Rating>
+          <h4>{nota}</h4>
+          <img src={star} alt="Star" />
+        </S.Rating>
+      </S.TitleCard>
+      <S.DescriptionCard>{getDescription(descreption)}</S.DescriptionCard>
+      <Button
+        title="Clique aqui para saber mais informações sobre o restaurante"
+        type="link"
+        to={`/restaurant/${id}`}
+      >
+        <>Saiba mais</>
+      </Button>
+    </S.ContainerCard>
+  </S.Card>
+)
 
 export default Resturant

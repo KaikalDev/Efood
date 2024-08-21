@@ -1,16 +1,16 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
-export const ListaPratos = styled.ul`
+export const productList = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
   margin-top: 56px;
 `
 
-export const CardPrato = styled.div`
-  background-color: ${Cores.Principal};
-  color: ${Cores.Secundaria};
+export const productCard = styled.div`
+  background-color: ${Colors.primary};
+  color: ${Colors.secondary};
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -23,21 +23,12 @@ export const CardPrato = styled.div`
   }
 `
 
-export const TitlePrato = styled.h2`
+export const productTitle = styled.h2`
   font-size: 16px;
   font-weight: bold;
 `
 
-export const DescriptionPrato = styled.p`
+export const productDescription = styled.p`
   font-size: 14px;
   line-height: 22px;
-`
-
-export const ButtonPrato = styled.button`
-  background-color: ${Cores.Secundaria};
-  font-size: 14px;
-  color: ${Cores.Principal};
-  font-weight: bold;
-  border: none;
-  padding: 4px;
 `

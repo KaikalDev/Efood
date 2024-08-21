@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
-export const Cores = {
-  Principal: '#E66767',
-  Secundaria: '#FFF8F2'
+export const Colors = {
+  primary: '#E66767',
+  secondary: '#FFF8F2'
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -14,20 +14,20 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   body {
-    background-color: ${Cores.Secundaria};
+    background-color: ${Colors.secondary};
   }
   .container {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
   }
+`
 
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.73);
-  }
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.73);
 `

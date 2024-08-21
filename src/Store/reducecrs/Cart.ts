@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Cardapio } from '../../Page/Home'
-
 type CartState = {
-  items: Cardapio[]
+  items: Menu[]
   isOpen: boolean
 }
 
@@ -22,14 +20,19 @@ const cartSlice = createSlice({
     close: (state) => {
       state.isOpen = false
     },
-    add: (state, action: PayloadAction<Cardapio>) => {
-      state.items.push(action.payload)
+    add: (state, action: PayloadAction<Menu>) => {
+      const item = { ...action.payload, idCart: state.items.length + 1 }
+      state.items.push(item)
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload)
+      state.items = state.items.filter((item) => item.idCart !== action.payload)
+    },
+    clear: (state) => {
+      state.items = []
+      state.isOpen = false
     }
   }
 })
 
-export const { close, open, add, remove } = cartSlice.actions
+export const { close, open, add, remove, clear } = cartSlice.actions
 export default cartSlice.reducer

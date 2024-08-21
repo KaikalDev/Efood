@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Cardapio } from '../../Page/Home'
-
 type modalState = {
-  prato: Cardapio | undefined
+  product: Menu | undefined
   isOpen: boolean
 }
 
 const initialState: modalState = {
-  prato: undefined,
+  product: undefined,
   isOpen: false
 }
 
@@ -21,13 +19,13 @@ const modalSlice = createSlice({
     },
     closeModal: (state) => {
       state.isOpen = false
-      state.prato = undefined
+      state.product = undefined
     },
-    setModalPrato: (state, action: PayloadAction<Cardapio | undefined>) => {
-      state.prato = action.payload
+    setProductModal: (state, action: PayloadAction<Menu | undefined>) => {
+      state.product = action.payload
     }
   }
 })
 
-export const { closeModal, openModal, setModalPrato } = modalSlice.actions
+export const { closeModal, openModal, setProductModal } = modalSlice.actions
 export default modalSlice.reducer

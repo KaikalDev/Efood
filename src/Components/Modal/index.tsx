@@ -1,58 +1,64 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { formataPreco } from '../../Containers/Pratos'
 import { closeModal } from '../../Store/reducecrs/Modal'
 import { add, open } from '../../Store/reducecrs/Cart'
+import { parseToBrl } from '../../Utils'
 
 import { Rootreducer } from '../../Store'
-import { Cardapio } from '../../Page/Home'
 
-import { Modal, Fechar, InfosPrato, ModalContainer } from './styles'
-import fecharImg from '../../assets/image/fechar.png'
+import CloseIcon from '../../assets/image/fechar.png'
+import { Overlay } from '../../styles'
+import Button from '../Button'
+import * as S from './styles'
 
 const ModalComponent = () => {
   const dispatch = useDispatch()
 
-  const { isOpen, prato } = useSelector((state: Rootreducer) => state.modal)
+  const { isOpen, product } = useSelector((state: Rootreducer) => state.modal)
 
-  const addToCart = (prato: Cardapio) => {
-    dispatch(add(prato))
+  const addToCart = (product: Menu) => {
+    dispatch(add(product))
     dispatch(open())
     dispatch(closeModal())
   }
 
   return (
-    <Modal className={isOpen ? 'visible' : ''}>
-      {prato && (
-        <ModalContainer className="container">
-          <img src={prato.foto} alt={prato.nome} />
-          <InfosPrato>
+    <S.Modal className={isOpen ? 'visible' : ''}>
+      {product && (
+        <S.ModalContainer className="container">
+          <img src={product.foto} alt={product.nome} />
+          <S.productInfos>
             <li>
-              <h3>{prato.nome}</h3>
+              <h3>{product.nome}</h3>
             </li>
             <li>
               <p>
-                {prato.descricao}
+                {product.descricao}
                 <br />
                 <br />
-                {prato.porcao}
+                {product.porcao}
               </p>
             </li>
-            <button onClick={() => addToCart(prato)}>
-              Adicionar ao carrinho - {formataPreco(prato.preco)}
-            </button>
-          </InfosPrato>
-          <Fechar>
+            <Button
+              variant="secondary"
+              type="button"
+              title="Clique aqui para adicionar o item no carrinho"
+              onClick={() => addToCart(product)}
+            >
+              <>Adicionar ao carrinho - {parseToBrl(product.preco)}</>
+            </Button>
+          </S.productInfos>
+          <S.Close>
             <img
               onClick={() => dispatch(closeModal())}
-              src={fecharImg}
+              src={CloseIcon}
               alt="Fechar"
             />
-          </Fechar>
-        </ModalContainer>
+          </S.Close>
+        </S.ModalContainer>
       )}
-      <div onClick={() => dispatch(closeModal())} className="overlay"></div>
-    </Modal>
+      <Overlay onClick={() => dispatch(closeModal())} />
+    </S.Modal>
   )
 }
 

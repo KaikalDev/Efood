@@ -1,43 +1,24 @@
-import HeroHome from '../../Containers/HeroHome'
+import { useGetRestaurantsQuery } from '../../services/api'
+
 import ResturantList from '../../Containers/RestaurantsList'
-
-import { useGetRestaurantesQuery } from '../../services/api'
-
-export type Cardapio = {
-  id: number
-  foto: string
-  preco: number
-  nome: string
-  descricao: string
-  porcao: string
-}
-
-export type Restaurante = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: Cardapio[]
-}
+import Header from '../../Containers/Header'
+import Loader from '../../Components/Loader'
 
 const Home = () => {
-  const { data: restaurante } = useGetRestaurantesQuery()
+  const { data: restaurant } = useGetRestaurantsQuery()
 
-  if (restaurante) {
+  if (restaurant) {
     return (
       <>
-        <HeroHome />
+        <Header type="Home" />
         <div className="container">
-          <ResturantList restaurantes={restaurante} />
+          <ResturantList restaurants={restaurant} />
         </div>
       </>
     )
   }
 
-  return <div>Loading...</div>
+  return <Loader />
 }
 
 export default Home

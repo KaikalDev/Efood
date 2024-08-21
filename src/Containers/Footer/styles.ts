@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
 export const ContainerFooter = styled.div`
   align-items: center;
@@ -23,5 +23,5 @@ export const TextFooter = styled.p`
   font-size: 10px;
   text-align: center;
   max-width: 480px;
-  color: ${Cores.Principal};
+  color: ${Colors.primary};
 `

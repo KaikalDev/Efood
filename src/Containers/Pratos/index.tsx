@@ -1,73 +1,52 @@
 import { useDispatch } from 'react-redux'
 
-import { add, open } from '../../Store/reducecrs/Cart'
-import { openModal, setModalPrato } from '../../Store/reducecrs/Modal'
+import { openModal, setProductModal } from '../../Store/reducecrs/Modal'
+import { getDescription } from '../../Utils'
 
-import {
-  ButtonPrato,
-  CardPrato,
-  DescriptionPrato,
-  ListaPratos,
-  TitlePrato
-} from './styles'
 import ModalComponent from '../../Components/Modal'
-
-import { Cardapio } from '../../Page/Home'
+import Button from '../../Components/Button'
+import * as S from './styles'
 
 type Props = {
-  pratos: Cardapio[]
+  products: Menu[]
 }
 
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
-}
-
-const Pratos = ({ pratos }: Props) => {
+const ProductsMenu = ({ products }: Props) => {
   const dispatch = useDispatch()
 
-  const addToCart = (prato: Cardapio) => {
-    dispatch(add(prato))
-    dispatch(open())
-  }
-
-  const getDescription = (descreption: string) => {
-    if (descreption.length > 220) {
-      return descreption.slice(0, 215) + ' ...'
-    }
-    return descreption
-  }
-
-  const getModal = (prato: Cardapio) => {
-    dispatch(setModalPrato(prato))
+  const getModal = (product: Menu) => {
+    dispatch(setProductModal(product))
     dispatch(openModal())
   }
 
   return (
     <>
       <div className="container">
-        <ListaPratos>
-          {pratos.map((prato) => (
-            <li key={prato.id}>
-              <CardPrato>
-                <img onClick={() => getModal(prato)} src={prato.foto} alt="" />
-                <TitlePrato>{prato.nome}</TitlePrato>
-                <DescriptionPrato>
-                  {getDescription(prato.descricao)}
-                </DescriptionPrato>
-                <ButtonPrato onClick={() => addToCart(prato)}>
-                  Adicionar ao carrinho
-                </ButtonPrato>
-              </CardPrato>
+        <S.productList>
+          {products.map((product) => (
+            <li key={product.id}>
+              <S.productCard>
+                <img src={product.foto} alt={product.nome} />
+                <S.productTitle>{product.nome}</S.productTitle>
+                <S.productDescription>
+                  {getDescription(product.descricao)}
+                </S.productDescription>
+                <Button
+                  variant="secondary"
+                  type="button"
+                  title="Clique aqui para adicionar o item no carrinho"
+                  onClick={() => getModal(product)}
+                >
+                  <>Adicionar ao carrinho</>
+                </Button>
+              </S.productCard>
             </li>
           ))}
-        </ListaPratos>
+        </S.productList>
       </div>
       <ModalComponent />
     </>
   )
 }
 
-export default Pratos
+export default ProductsMenu

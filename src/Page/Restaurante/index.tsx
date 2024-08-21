@@ -1,22 +1,27 @@
 import { useParams } from 'react-router-dom'
-import { useGetCardapioQuery } from '../../services/api'
+import { useGetMenuQuery } from '../../services/api'
 
-import HeroSections from '../../Containers/HeroSections'
-import Pratos from '../../Containers/Pratos'
+import Header from '../../Containers/Header'
+import ProductsMenu from '../../Containers/Pratos'
+import Loader from '../../Components/Loader'
+
+type RestaurantParams = {
+  id: string
+}
 
 const RestaurantSection = () => {
-  const { id } = useParams()
+  const { id } = useParams() as RestaurantParams
 
-  const { data: restaurant } = useGetCardapioQuery(id!)
+  const { data: restaurant } = useGetMenuQuery(id)
 
   if (!restaurant) {
-    return <h3>Carregando ...</h3>
+    return <Loader />
   }
 
   return (
     <>
-      <HeroSections restaurante={restaurant} />
-      <Pratos pratos={restaurant.cardapio} />
+      <Header type="section" restaurante={restaurant} />
+      <ProductsMenu products={restaurant.cardapio} />
     </>
   )
 }

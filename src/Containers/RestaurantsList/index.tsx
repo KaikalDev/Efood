@@ -1,15 +1,13 @@
 import Resturant from '../../Components/Restaurant'
 import { List } from './styles'
 
-import { Restaurante } from '../../Page/Home'
-
 type Props = {
-  restaurantes: Restaurante[]
+  restaurants: Restaurant[]
 }
 
-const ResturantList = ({ restaurantes }: Props) => (
+const ResturantList = ({ restaurants }: Props) => (
   <List>
-    {restaurantes.map((restaurant) => (
+    {restaurants.map((restaurant) => (
       <Resturant
         category={restaurant.tipo}
         descreption={restaurant.descricao}

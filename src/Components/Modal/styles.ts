@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
 export const Modal = styled.div`
   position: fixed;
@@ -21,11 +21,11 @@ export const ModalContainer = styled.div`
   max-width: 960px;
   position: relative;
   z-index: 1;
-  background-color: ${Cores.Principal};
+  background-color: ${Colors.primary};
   display: flex;
   gap: 24px;
   padding: 32px;
-  color: ${Cores.Secundaria};
+  color: ${Colors.secondary};
   align-items: center;
 
   > img {
@@ -35,7 +35,7 @@ export const ModalContainer = styled.div`
   }
 `
 
-export const InfosPrato = styled.ul`
+export const productInfos = styled.ul`
   display: inline-block;
 
   h3 {
@@ -50,8 +50,8 @@ export const InfosPrato = styled.ul`
   }
 
   button {
-    background-color: ${Cores.Secundaria};
-    color: ${Cores.Principal};
+    background-color: ${Colors.secondary};
+    color: ${Colors.primary};
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -60,7 +60,7 @@ export const InfosPrato = styled.ul`
   }
 `
 
-export const Fechar = styled.button`
+export const Close = styled.button`
   position: absolute;
   top: 8px;
   right: 8px;

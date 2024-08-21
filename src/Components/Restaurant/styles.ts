@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
 export const Card = styled.div`
-  border: 1px solid ${Cores.Principal};
+  border: 1px solid ${Colors.primary};
   position: relative;
 
   > img {
@@ -23,25 +23,15 @@ export const Tags = styled.div`
     font-size: 12px;
     font-weight: bold;
     color: #fff;
-    background-color: ${Cores.Principal};
+    background-color: ${Colors.primary};
     padding: 4px 6px;
   }
 `
 
 export const ContainerCard = styled.div`
-  color: ${Cores.Principal};
+  color: ${Colors.primary};
   padding: 8px;
   background-color: transparent;
-
-  a {
-    background-color: ${Cores.Principal};
-    font-size: 14px;
-    color: #fff;
-    font-weight: bold;
-    padding: 4px 6px;
-    border: none;
-    text-decoration: none;
-  }
 `
 
 export const TitleCard = styled.ul`
@@ -53,7 +43,7 @@ export const TitleCard = styled.ul`
   align-items: center;
 `
 
-export const Nota = styled.h4`
+export const Rating = styled.h4`
   display: flex;
   gap: 8px;
   align-items: center;
