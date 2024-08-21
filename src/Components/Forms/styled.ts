@@ -47,9 +47,10 @@ export const Container = styled.div`
     height: 32px;
     border: 2px solid ${Colors.secondary};
     width: 100%;
-  }
-  .error {
-    border: 2px solid red;
+
+    &.error {
+      border: 2px solid red;
+    }
   }
 
   > p {

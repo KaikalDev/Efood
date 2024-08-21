@@ -13,6 +13,7 @@ import { parseToBrl } from '../../Utils'
 import { Container } from './styled'
 import Button from '../Button'
 import Loader from '../Loader'
+import InputMask from 'react-input-mask'
 
 type Props = {
   totalPrice: number
@@ -93,8 +94,8 @@ const Forms = ({ totalPrice, show }: Props) => {
         formActive === 'card'
           ? schema
               .required('O campo é obrigatório')
-              .max(16, 'Formato inválido')
-              .min(16, 'Formato inválido')
+              .max(19, 'Formato inválido')
+              .min(19, 'Formato inválido')
           : schema
       ),
       cardCode: Yup.string().when((values, schema) =>
@@ -212,7 +213,8 @@ const Forms = ({ totalPrice, show }: Props) => {
           <div className="duo">
             <div>
               <label htmlFor="cep">CEP</label>
-              <input
+              <InputMask
+                mask="99999-999"
                 id="cep"
                 type="text"
                 name="cep"
@@ -288,7 +290,8 @@ const Forms = ({ totalPrice, show }: Props) => {
           <div className="duo">
             <div className="width">
               <label htmlFor="cardNumber">Número do cartão</label>
-              <input
+              <InputMask
+                mask="9999 9999 9999 9999"
                 id="cardNumber"
                 type="text"
                 name="cardNumber"
@@ -300,7 +303,8 @@ const Forms = ({ totalPrice, show }: Props) => {
             </div>
             <div>
               <label htmlFor="cardCode">CVV</label>
-              <input
+              <InputMask
+                mask="999"
                 id="cardCode"
                 type="text"
                 name="cardCode"
@@ -314,7 +318,8 @@ const Forms = ({ totalPrice, show }: Props) => {
           <div className="duo">
             <div>
               <label htmlFor="expiresMonth">Mês de vencimento</label>
-              <input
+              <InputMask
+                mask="99"
                 id="expiresMonth"
                 type="text"
                 name="expiresMonth"
@@ -326,7 +331,8 @@ const Forms = ({ totalPrice, show }: Props) => {
             </div>
             <div>
               <label htmlFor="expiresYear">Ano de vencimento</label>
-              <input
+              <InputMask
+                mask="99"
                 id="expiresYear"
                 type="text"
                 name="expiresYear"
@@ -345,7 +351,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               title="Clique aqui para finalizar a compra"
               disabled={isLoading}
             >
-              <>{isLoading ? <Loader /> : 'Finalizar compra'}</>
+              <>{isLoading ? <Loader type="button" /> : 'Finalizar compra'}</>
             </Button>
             <Button
               type="button"
