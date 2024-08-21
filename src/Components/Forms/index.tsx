@@ -195,8 +195,8 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.addres}
               className={form.errors.addres ? 'error' : ''}
             />
+            <small>{form.errors.addres}</small>
           </div>
-          <small>{form.errors.addres}</small>
           <div>
             <label htmlFor="city">Cidade</label>
             <input
@@ -207,6 +207,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.city}
               className={form.errors.city ? 'error' : ''}
             />
+            <small>{form.errors.city}</small>
           </div>
           <div className="duo">
             <div>
@@ -219,6 +220,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cep}
                 className={form.errors.cep ? 'error' : ''}
               />
+              <small>{form.errors.city}</small>
             </div>
             <div>
               <label htmlFor="addresNumber">Número</label>
@@ -230,6 +232,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.addresNumber}
                 className={checkInputHasError('addresNumber') ? 'error' : ''}
               />
+              <small>{form.errors.addresNumber}</small>
             </div>
           </div>
           <div>
@@ -242,6 +245,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.complement}
               className={checkInputHasError('complement') ? 'error' : ''}
             />
+            <small>{form.errors.complement}</small>
           </div>
           <div className="marginTop">
             <Button
@@ -279,6 +283,7 @@ const Forms = ({ totalPrice, show }: Props) => {
               value={form.values.carDisplayName}
               className={checkInputHasError('carDisplayName') ? 'error' : ''}
             />
+            <small>{form.errors.carDisplayName}</small>
           </div>
           <div className="duo">
             <div className="width">
@@ -291,6 +296,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cardNumber}
                 className={checkInputHasError('cardNumber') ? 'error' : ''}
               />
+              <small>{form.errors.cardNumber}</small>
             </div>
             <div>
               <label htmlFor="cardCode">CVV</label>
@@ -302,6 +308,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.cardCode}
                 className={checkInputHasError('cardCode') ? 'error' : ''}
               />
+              <small>{form.errors.cardCode}</small>
             </div>
           </div>
           <div className="duo">
@@ -315,6 +322,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.expiresMonth}
                 className={checkInputHasError('expiresMonth') ? 'error' : ''}
               />
+              <small>{form.errors.expiresMonth}</small>
             </div>
             <div>
               <label htmlFor="expiresYear">Ano de vencimento</label>
@@ -326,6 +334,7 @@ const Forms = ({ totalPrice, show }: Props) => {
                 value={form.values.expiresYear}
                 className={checkInputHasError('expiresYear') ? 'error' : ''}
               />
+              <small>{form.errors.expiresYear}</small>
             </div>
           </div>
           <div className="marginTop">
